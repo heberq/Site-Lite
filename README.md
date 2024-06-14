@@ -1,6 +1,6 @@
 # Site Lite
 
-Criado pela equipe da Hospedar Site para sites estáticos feitos em html. [PHospedar Site](https://www.hospedarsite.net.br).
+Criado pela equipe da Hospedar Site para sites estáticos feitos em html. [Hospedar Site](https://www.hospedarsite.net.br).
 
 ## Instalação do Site Lite
 
