@@ -9,6 +9,8 @@ Criado pela equipe da Hospedar Site para sites estáticos feitos em html. [Hospe
 2. Acesse a página Login
     
  >  https://seudominio.com.br/login.php
+> Login: admin
+> Senha: admin
  
 3. Crie as páginas header, footer e home no Gerenciador de Html
 
