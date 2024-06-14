@@ -1,5 +1,21 @@
-O Site Lite é um script PHP que você poderá criar arquivos .html sem necessidade de um banco de dados.
-Ele foi criado baseado num antigo script aonde não havia editor textarea.
-Com isso você pode criar um arquivo html limpo e da forma que desejar.
-Esse script foi criado para facilitar a manutenção de sites não dinamicos.
-Ele já vêm com o bootstrap, para facilitar na criação do site.
+# Site Lite
+
+Criado pela equipe da Hospedar Site para sites estáticos feitos em html. [PHospedar Site](https://www.hospedarsite.net.br).
+
+## Instalação do Site Lite
+
+1. Efetue o download e descompacte dentro da pasta plublic_html:
+
+2. Acesse a página Login
+    
+ >  https://seudominio.com.br/login.php
+ 
+3. Crie as páginas header, footer e home no Gerenciador de Html
+
+4. Site Lite está instalado e configurado.
+
+### Versão do site Lite
+
+|Site Lite|Versão do PHP|
+|--------------|--------------|
+|v2.0.0|PHP 7.4.x ou Superior|
