@@ -31,10 +31,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     } elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
         $arquivo = $db->buscarArquivo($_GET['id']);
     } elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['excluir'])) {
+        $arquivo = $db->buscarArquivo($_GET['excluir']);
+        $caminhoDoArquivo = $arquivo['pasta'] . '/' . $arquivo['nome'] . '.html';
+        if (file_exists($caminhoDoArquivo)) {
+        unlink($caminhoDoArquivo);
+        }
         $db->excluir($_GET['excluir']);
         header('Location: editor.php');
     }
-
     $arquivos = $db->buscar();
 ?>
 

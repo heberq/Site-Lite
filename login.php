@@ -2,9 +2,7 @@
 session_start();
 
 $users = [
-    'user1' => 'password1',
-    'user2' => 'password2'
-    // adicione mais usuários conforme necessário
+    'admin' => 'admin'
 ];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -11,9 +11,18 @@ $paginas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Menu Dinâmico com PHP e SQLite</title>
+    <?php
+    // Obtém o nome da página da URL reescrita
+    $nomePagina = trim($_GET['pagina'] ?? '', '/');
+    // Se a página não for especificada, use um título padrão
+    if ($nomePagina == '') {
+        $nomePagina = 'Bem Vindo ao Site Lite';
+    }
+    ?>
+    <title><?php echo htmlspecialchars(ucwords(str_replace('-', ' ', $nomePagina))); ?></title>
     <!-- Inclui o CSS do Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -22,14 +31,31 @@ $paginas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <?php foreach ($paginas as $pagina): ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/<?php echo urlencode($pagina['nome']); ?>"><?php echo ucfirst(htmlspecialchars($pagina['nome'])); ?></a>
-                    </li>
+                    <?php if($pagina['nome'] != 'header' && $pagina['nome'] != 'footer'): ?>
+                        <li class="nav-item">
+                            <?php $nomePagina = str_replace('-', ' ', $pagina['nome']);
+                                  $nomePagina = ucwords($nomePagina); // Adicionado esta linha
+                            ?>
+                            <a class="nav-link" href="/<?php echo urlencode($pagina['nome']); ?>"><?php echo htmlspecialchars($nomePagina); ?></a>
+                        </li>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </ul>
         </div>
     </nav>
-
+    <?php
+        if ($pagina) {
+                        $arquivo = $pagina['pasta'] . '/header.html';
+                     }
+                        // Verifica se o arquivo existe e está na pasta correta
+        if (file_exists($arquivo) && is_file($arquivo)) {
+        // Importa o arquivo HTML
+            include($arquivo);
+        } else {
+            // Se o arquivo não existir, inclui a página de erro
+            echo '<div class="alert alert-danger" role="alert">Crie uma página obrigatória <strong>header</strong>.</div>';
+        }
+    ?>
     <?php
     // Define o arquivo padrão para incluir
     $arquivo = 'html/home.html';
@@ -53,8 +79,21 @@ $paginas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         include($arquivo);
     } else {
         // Se o arquivo não existir, inclui a página de erro
-        echo '<div class="alert alert-danger" role="alert">Página não encontrada.</div>';
+        echo '<div class="alert alert-danger" role="alert">Crie uma página obrigatória <strong>home</strong>.</div>';
     }
+    ?>
+    <?php
+        if ($pagina) {
+                        $arquivo = $pagina['pasta'] . '/footer.html';
+                     }
+                        // Verifica se o arquivo existe e está na pasta correta
+        if (file_exists($arquivo) && is_file($arquivo)) {
+        // Importa o arquivo HTML
+            include($arquivo);
+        } else {
+            // Se o arquivo não existir, inclui a página de erro
+            echo '<div class="alert alert-danger" role="alert">Crie uma página obrigatória <strong>footer</strong>.</div>';
+        }
     ?>
 </div>
 
